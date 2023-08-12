@@ -1,0 +1,29 @@
+.card {
+    background-color: white;
+    height: 85vh;
+    width: 50vh;
+    border-radius: 30px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2vh;
+}
+
+.card img {
+    border-radius: 50%;
+    width: 50%;
+    margin: 2rem;
+}
+
+.card hr {
+    width: 100%;
+    color: aqua;
+    margin: 1rem;
+}
+
+.card p {
+    letter-spacing: 2px;
+    align-self: flex-start;
+}
