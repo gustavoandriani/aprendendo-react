@@ -1,0 +1,16 @@
+1 - Aplicações de Página Única (Sem reload);
+2 - No lugar de páginas, temos rotas. Funcionam como telas de um aplicativo nativo;
+    2.1 - Rotas são telas específicas associadas a um caminho de url.
+3 - Funcionam de forma dinâmica usando JS para gerenciar todo o conteúdo da página;
+4 - Tem o objetivo de fornecer a experiência de um aplicativo nativo;
+5 - Vantagens;
+    5.1 - Fluidez de um aplicativo nativo;
+    5.2 - Melhor experiência após o carregamento inicial.
+6 - Desvantagens.
+    6.1 - Carregamento inicial lento;
+    6.2 - Problemas de SEO (Search Engine Optimization - Otimização de mecanismos de busca).
+
+Exemplos de SPAs:
+    - Facebook/Instagram/Threads;
+    - Youtube;
+    - Twitch.
