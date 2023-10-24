@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -24,11 +29,10 @@ a:hover {
 }
 
 body {
+  width: 1850px;
   margin: 0;
   display: flex;
   padding: 2rem;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {

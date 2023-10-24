@@ -1,0 +1,35 @@
+[
+    {
+        "id": 0,
+        "nomeItem": "Monitor Acer 24' 165Hz",
+        "qntdItem": 34,
+        "descricaoItem": "Monitor de alta tecnologia, com 165Hz de atualização",
+        "dataAdicaoItem": [{
+            "dia": 14,
+            "mes": 7,
+            "ano": 2023
+        }]
+    },
+    {
+        "id": 1,
+        "nomeItem": "Teclado Logitech G915 TKL",
+        "qntdItem": 2,
+        "descricaoItem": "Teclado de alta tecnologia, com LIGTHSPEED",
+        "dataAdicaoItem": [{
+            "dia": 15,
+            "mes": 2,
+            "ano": 2023
+        }]
+    },
+    {
+        "id": 2,
+        "nomeItem": "Mouse Logitech G903",
+        "qntdItem": 14,
+        "descricaoItem": "Mouse de alta tecnologia, com LIGTHSPEED e sensor HERO25K",
+        "dataAdicaoItem": [{
+            "dia": 22,
+            "mes": 5,
+            "ano": 2023
+        }]
+    }
+]
