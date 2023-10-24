@@ -9,15 +9,25 @@ export default function ContainerInfos() {
     const [ qntdItem, setQntdItem ] = useState(0)
     const [ totalItens, setTotalItens ] = useState(0)
     const [ itensAcabando, setItensAcabando ] = useState(0)
+    const [ itensRecentes, setItensRecentes ] = useState(0)
 
     useEffect(() => {
+        let dataHoje = Date.now()
         let total = 0
         listItens.forEach(item => {
-            total += item.qntdItem
+            total += Number(item.nmrItens)
+            if(Number(item.nmrItens) < 10) {
+                return setItensAcabando(itensAcabando + 1)
+            }
+            return total
         })
-        
+
+        listItens.forEach(item => {
+            if(item.addData - dataHoje <= 10) {
+                return setItensRecentes(itensRecentes + 1)
+            }
+        })
         setTotalItens(total)
-        setItensAcabando(itensAcabando)
     }, [listItens])
 
     const addItem = (ev) => {
@@ -26,8 +36,8 @@ export default function ContainerInfos() {
         const newItem = {
             id: Math.floor(Math.random() * 100000),
             nameItem: nameItem,
-            qntdItem: qntdItem,
-            addData: new Date()
+            nmrItens: qntdItem,
+            addData: Date.now()
         }
 
         setListItens((state) => [...state, newItem])
@@ -35,14 +45,12 @@ export default function ContainerInfos() {
         setQntdItem("")
     }
 
-    console.log(listItens)
-
     return (
         <>
             <div className="ContainerInfos">
                 <BoxInfos infoTitulo={"Diversidade de itens"} infoQntd={listItens.length} />
                 <BoxInfos infoTitulo={"Inventário total"} infoQntd={totalItens} />
-                <BoxInfos infoTitulo={"Itens recentes"} infoQntd={0} />
+                <BoxInfos infoTitulo={"Itens recentes"} infoQntd={itensRecentes} />
                 <BoxInfos infoTitulo={"Itens acabando"} infoQntd={itensAcabando} />
             </div>
             <div>
