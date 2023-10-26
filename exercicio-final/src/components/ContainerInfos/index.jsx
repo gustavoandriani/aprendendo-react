@@ -1,16 +1,75 @@
-import BoxInfos from "../BoxInfos"
+import { useContext, useEffect, useState } from "react"
 import "./styles.css"
-import CountDiversidade from "../../functions/CountDiversidade"
-import CountInventarioTotal from "../../functions/CountInventarioTotal"
-import CountItensAcabando from "../../functions/CountItensAcabando"
+import BoxInfos from "../BoxInfos"
+import ListItensContext from "../../contexts/ListItensContext"
 
 export default function ContainerInfos() {
+    const ListItens = useContext(ListItensContext)
+    const [ nameItem, setNameItem ] = useState("")
+    const [ qntdItem, setQntdItem ] = useState(0)
+    const [ totalItens, setTotalItens ] = useState(0)
+    const [ itensAcabando, setItensAcabando ] = useState(0)
+    const [ itensRecentes, setItensRecentes ] = useState(0)
+
+    useEffect(() => {
+        let dataHoje = Date.now()
+        let total = 0
+        // ListItens.forEach(item => {
+        //     total += Number(item.nmrItens)
+        //     if(Number(item.nmrItens) < 10) {
+        //         return setItensAcabando(itensAcabando + 1)
+        //     }
+        //     return total
+        // })
+
+        // ListItens.forEach(item => {
+        //     if(item.addData - dataHoje <= 10) {
+        //         return setItensRecentes(itensRecentes + 1)
+        //     }
+        // })
+        setTotalItens(total)
+    }, [ListItens])
+
+    const addItem = (ev) => {
+        ev.preventDefault()
+
+        const newItem = {
+            id: Math.floor(Math.random() * 100000),
+            nameItem: nameItem,
+            nmrItens: qntdItem,
+            addData: Date.now()
+        }
+
+        ListItens.setListItens((state) => [...state, newItem])
+        setNameItem("")
+        setQntdItem("")
+    }
+
     return (
-        <div className="ContainerInfos">
-            <BoxInfos infoTitulo={"Diversidade de itens"} infoQntd={CountDiversidade()} />
-            <BoxInfos infoTitulo={"Inventário total"} infoQntd={CountInventarioTotal()} />
-            <BoxInfos infoTitulo={"Itens recentes"} infoQntd={0} />
-            <BoxInfos infoTitulo={"Itens acabando"} infoQntd={CountItensAcabando()} />
-        </div>
+        <>
+            <div className="ContainerInfos">
+                <BoxInfos infoTitulo={"Diversidade de itens"} infoQntd={ListItens.length} />
+                <BoxInfos infoTitulo={"Inventário total"} infoQntd={totalItens} />
+                <BoxInfos infoTitulo={"Itens recentes"} infoQntd={itensRecentes} />
+                <BoxInfos infoTitulo={"Itens acabando"} infoQntd={itensAcabando} />
+            </div>
+            <div>
+                <form onSubmit={addItem}>
+                    <input
+                        type="text"
+                        value={nameItem}
+                        required
+                        onChange={(ev) => setNameItem(ev.target.value)}
+                    />
+                    <input
+                        type="number"
+                        value={qntdItem}
+                        required
+                        onChange={(ev) => setQntdItem(ev.target.value)}
+                    />
+                    <button type="submit">ENVIAR</button>
+                </form>
+            </div>
+        </>
     )
 }
