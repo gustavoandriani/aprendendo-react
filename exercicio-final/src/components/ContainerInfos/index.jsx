@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import "./styles.css"
-import listaItens from "../../database.json"
 import BoxInfos from "../BoxInfos"
+import useListItens from "../../hooks/useListItens"
 
-export default function ContainerInfos() {
-    const [ listItens, setListItens ] = useState([])
+export default function ContainerInfos({ addNovoItem, listItens, addNovoItemAcabando,  addNovoItemRecente }) {
+    const { addItem } = useListItens()
     const [ nameItem, setNameItem ] = useState("")
     const [ qntdItem, setQntdItem ] = useState(0)
     const [ totalItens, setTotalItens ] = useState(0)
@@ -15,32 +15,40 @@ export default function ContainerInfos() {
         let dataHoje = Date.now()
         let total = 0
         listItens.forEach(item => {
-            total += Number(item.nmrItens)
-            if(Number(item.nmrItens) < 10) {
+            total += Number(item.qntdItem)
+            return setTotalItens(total)
+        })
+        listItens.forEach(item => {
+            if(Number(item.qntdItem) < 10) {
                 return setItensAcabando(itensAcabando + 1)
             }
-            return total
         })
-
         listItens.forEach(item => {
             if(item.addData - dataHoje <= 10) {
+                const itemRecente = {
+                    id: item.id,
+                    nameItem: item.nameItem
+                }
+                addNovoItemRecente(itemRecente)
                 return setItensRecentes(itensRecentes + 1)
             }
         })
-        setTotalItens(total)
     }, [listItens])
 
-    const addItem = (ev) => {
+    const formItem = (ev) => {
         ev.preventDefault()
 
-        const newItem = {
-            id: Math.floor(Math.random() * 100000),
-            nameItem: nameItem,
-            nmrItens: qntdItem,
-            addData: Date.now()
-        }
+        addItem({ nameItem, qntdItem, desc: "Olá, mundo!" })
 
-        setListItens((state) => [...state, newItem])
+       // if (Number(item.qntdItem) < 10 ) {
+       //     const itemAcabando = {
+       //         id: item.id,
+       //         nameItem: item.nameItem,
+       //         qntdItem: item.qntdItem
+       //     }
+       //     addNovoItemAcabando(itemAcabando)
+       // }
+
         setNameItem("")
         setQntdItem("")
     }
@@ -54,7 +62,7 @@ export default function ContainerInfos() {
                 <BoxInfos infoTitulo={"Itens acabando"} infoQntd={itensAcabando} />
             </div>
             <div>
-                <form onSubmit={addItem}>
+                <form onSubmit={formItem}>
                     <input
                         type="text"
                         value={nameItem}
