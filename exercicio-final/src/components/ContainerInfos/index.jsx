@@ -30,14 +30,6 @@ export default function ContainerInfos() {
         })
     }, [items])
 
-    const formItem = (ev) => {
-        ev.preventDefault()
-
-        addItem({ name, qntd, desc: "Olá, mundo!" })
-        setName("")
-        setQntd("")
-    }
-
     return (
         <>
             <div className="ContainerInfos">

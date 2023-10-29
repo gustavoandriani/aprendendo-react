@@ -47,8 +47,12 @@ export default function Itens() {
                 }
 
                tabTwoContent={
-                <form onSubmit={formItem}>
+                <form
+                    onSubmit={formItem}
+                    style={{ display: "flex", flexDirection: "column"}}
+                >
                     <TextField
+                        sx={{ margin: "1rem" }}
                         id="outlined-basic"
                         label="Nome do Item"
                         variant="outlined"
@@ -57,6 +61,7 @@ export default function Itens() {
                         onChange={(ev) => setName(ev.target.value)}
                     />
                     <TextField
+                        sx={{ margin: "1rem" }}
                         id="outlined-basic"
                         label="Quantidade de itens"
                         variant="outlined"
@@ -65,6 +70,7 @@ export default function Itens() {
                         onChange={(ev) => setQntd(ev.target.value)}
                     />
                     <TextField
+                        sx={{ margin: "1rem" }}
                         id="outlined-multiline-static"
                         label="Descrição do item"
                         multiline
