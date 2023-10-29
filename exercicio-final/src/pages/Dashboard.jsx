@@ -1,43 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContainerInfos from "../components/ContainerInfos";
 import ContainerTables from "../components/ContainerTables";
 import BasicTable from "../components/BasicTable";
+import useListItens from "../hooks/useListItens";
 
 export default function Dashboard() {
-    const [ listItens, setListItens ] = useState([])
-    const [ listItensAcabando, setListItensAcabando ] = useState([])
-    const [ listItensRecentes, setListItensRecentes ] = useState([])
+    const { items } = useListItens()
+    const [ itensAcabando, setItensAcabando ] = useState([])
+    const [ itensRecentes, setItensRecentes ] = useState([])
+     
+    useEffect(() => {
+        items.forEach(item => {
+            if(Number(item.qntd) < 10 ) {
+                const itemAcabando = {
+                    id: item.id,
+                    name: item.name,
+                    qntd: item.qntd
+                }
+                setItensAcabando((state) => [...state, itemAcabando])
+            }
+        });
 
-    function salvarItem(item) {
-        let newItem = [...listItens]
-        newItem.push(item)
-        setListItens(newItem)
-    }
-
-    function salvarItemAcabando(item) {
-        let newItem = [...listItensAcabando]
-        newItem.push(item)
-        setListItensAcabando(newItem)
-    }
-
-    function salvarItemRecente(item) {
-        let newItem = [...listItensRecentes]
-        newItem.push(item)
-        setListItensRecentes(newItem)
-    }
-
+        items.forEach(item => {
+            let dataHoje = Date.now()
+            if(item.addData - dataHoje <= 10) {
+                const itemRecente = {
+                    id: item.id,
+                    name: item.name
+                }
+                setItensRecentes((state) => [...state, itemRecente])
+            }
+        });
+    }, [items])
     return (
         <main>
             <h2>Dashboard</h2>
             <ContainerInfos
-                addNovoItem={salvarItem}
-                listItens={listItens}
-                addNovoItemAcabando={salvarItemAcabando}
-                addNovoItemRecente={salvarItemRecente}
+                
             />
             <ContainerTables
-                listItensAcabando={listItensAcabando}
-                listItensRecentes={listItensRecentes}
+                listItensAcabando={itensAcabando}
+                listItensRecentes={itensRecentes}
             />
 
             <BasicTable />

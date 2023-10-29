@@ -12,11 +12,12 @@ export default function ContainerTables({ listItensAcabando, listItensRecentes }
                 tableContent={
                     listItensRecentes.length > 0 ? (listItensRecentes.map((item) => (
                         <TableRow>
-                            <TableCell>{item.nameItem}</TableCell>
+                            <TableCell>{item.name}</TableCell>
                             <TableCell align="right">
                                 <Link to={`itens/${item.id}`}>
                                     <MuiButton
                                         textButton="VER"
+                                        colorButton="warning"
                                     />
                                 </Link>
                             </TableCell>
@@ -30,12 +31,13 @@ export default function ContainerTables({ listItensAcabando, listItensRecentes }
                 tableContent={
                     listItensAcabando.length > 0 ? (listItensAcabando.map((item) => (
                         <TableRow>
-                            <TableCell>{item.nameItem}</TableCell>
-                            <TableCell align="right">{item.qntdItem}</TableCell>
+                            <TableCell>{item.name}</TableCell>
+                            <TableCell align="right">{item.qntd}</TableCell>
                             <TableCell align="right">
                                 <Link align="right" to={`itens/${item.id}`}>
                                     <MuiButton
                                         textButton="VER"
+                                        colorButton="warning"
                                     />
                                 </Link>
                             </TableCell>
