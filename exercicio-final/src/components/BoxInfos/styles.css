@@ -1,9 +1,10 @@
 .BoxInfos {
-    background-color: #161616;
+    background-color: rgb(37, 37, 37);
     width: 20%;
     height: 200px;
     display: flex;
     flex-direction: column;
+    border-radius: 15px;
 }
 
 .BoxInfos p {
