@@ -3,6 +3,7 @@ import RootLayout from "./pages/RootLayout";
 import Dashboard from "./pages/Dashboard";
 import Itens from "./pages/Itens";
 import Item from "./pages/Item";
+import ItemEdit from "./pages/ItemEdit";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,9 @@ const router = createBrowserRouter([
         }, {
             path: "itens/:itemId",
             element: <Item />
+        }, {
+            path: "itens/:itemId/edit",
+            element: <ItemEdit />
         }]
     }
 ])

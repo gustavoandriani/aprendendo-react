@@ -40,9 +40,12 @@ export default function Itens() {
                                                 colorButton="warning"
                                             />
                                         </Link>
-                                        <button
+                                        <MuiButton
+                                            textButton="EXCLUIR"
+                                            colorButton="error"
+                                            variant="outlined"
                                             onClick={() => removeItem(item.id)}
-                                        >TESTE</button>
+                                        />
                                     </TableCell>
                                 </TableRow>
                             ))
@@ -90,6 +93,7 @@ export default function Itens() {
                         textButton="ADICIONAR"
                         colorButton="error"
                         type="submit"
+                        variant="contained"
                     />
                 </form>
                 

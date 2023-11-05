@@ -18,14 +18,22 @@ export default function Item() {
             <Link to="/itens">
                 <MuiButton 
                     textButton="Voltar"
-                    colorButton="secondary"
+                    colorButton="error"
+                    variant="outlined"
+                />
+            </Link>
+            <Link to="edit">
+                <MuiButton 
+                    textButton="Editar"
+                    colorButton="warning"
+                    variant="outlined"
                 />
             </Link>
             <h2>{item.name}</h2>
             <p>{item.desc}</p>
             <MuiButton 
-                textButton="OFF"
-                colorButton="error"
+                textButton={`Quantidade: ${item.qntd}`}
+                colorButton={ item.qntd > 10 ? ("success") : ("error")}
             />
         </section>
     )
